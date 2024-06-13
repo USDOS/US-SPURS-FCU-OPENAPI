@@ -1,0 +1,180 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "US DEPARTMENT OF SPURS FEDERAL CREDIT UNION API",
+    "version" : "1.0.0",
+    "description" : "This API presented here is specifically designed for the use of the US DEPARTMENT OF SPURS FEDERAL CREDIT UNION. With this API, the credit union can efficiently manage its operations and provide its customers with an enhanced banking experience. As the US Department of Spurs Federal Credit Union strives to provide its customers with the best possible banking experience, this API will prove to be a valuable tool in achieving that goal. With its specialized design, the credit union can now efficiently manage its operations and offer improved services to its members.\n\nThis API offers a range of features that cater to the unique needs of a credit union. From account management and transaction tracking to loan applications and approvals, the API streamlines various aspects of banking operations. Additionally, it ensures secure handling and processing of sensitive financial information.\n\nThrough this API, members of the credit union can easily access their account information, transfer funds, and make payments online. Additionally, the API enables the credit union to automate many of its internal processes, including loan approvals and fraud detection."
+  },
+  "basePath" : "/api",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/accounts" : {
+      "get" : {
+        "summary" : "Get all accounts",
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Account"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a new account",
+        "parameters" : [ {
+          "name" : "account",
+          "in" : "body",
+          "description" : "Account object",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Account"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Account"
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountId}" : {
+      "get" : {
+        "summary" : "Get an account by ID",
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "path",
+          "description" : "ID of the account",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Account"
+            }
+          },
+          "404" : {
+            "description" : "Account not found"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update an account",
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "path",
+          "description" : "ID of the account",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "account",
+          "in" : "body",
+          "description" : "Account object",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Account"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Account"
+            }
+          },
+          "404" : {
+            "description" : "Account not found"
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete an account",
+        "parameters" : [ {
+          "name" : "accountId",
+          "in" : "path",
+          "description" : "ID of the account",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Account deleted"
+          },
+          "404" : {
+            "description" : "Account not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Account" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "accountNumber" : {
+          "type" : "string"
+        },
+        "balance" : {
+          "type" : "number",
+          "format" : "float"
+        }
+      },
+      "required" : [ "accountNumber", "balance" ]
+    }
+  },
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/US-SPURS/spursfcu_openapi/1.0.0",
+    "variables" : {
+      "Bank Name" : {
+        "default" : "US DEPARTMENT OF SPURS FEDERAL CREDIT UNION",
+        "enum" : [ "US DEPARTMENT OF SPURS FCU" ],
+        "description" : "US DEPARTMENT OF SPURS FCU"
+      },
+      "Routing Number" : {
+        "default" : "096700000",
+        "description" : "RTN",
+        "enum" : [ "096700000", "96700000" ]
+      }
+    }
+  } ],
+  "components" : {
+    "schemas" : {
+      "Schema" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "Schema1" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      }
+    }
+  }
+}
